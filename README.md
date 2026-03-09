@@ -69,7 +69,7 @@ This starts a PostgreSQL 17 container on port **5432** with:
 ```bash
 cd backend
 cp .env.example .env      # first time only, makes a copy of example env.
-npm install               # first time only, installs dependancies for project listed in package.json. Run again if new dependancy. added.
+npm install               # first time only, installs dependancies for frontend listed in frontend/package.json. Run again if new dependancy. added.
 npm run dev
 ```
 
@@ -79,8 +79,8 @@ The server starts on **http://localhost:3001** and automatically creates the `it
 
 ```bash
 cd frontend
-cp .env.example .env      # first time only
-npm install               # first time only
+cp .env.example .env      # first time only, makes a copy of example env.
+npm install               # first time only, installs dependancies for backend listed in backend/package.json. Run again if new dependancy. added.
 npm run dev
 ```
 
@@ -100,7 +100,7 @@ Open **http://localhost:5173** in your browser.
 ### Example requests (curl)
 
 ```bash
-# List items
+# List items, it should be empty and return []
 curl http://localhost:3001/items
 
 # Create an item
@@ -108,8 +108,12 @@ curl -X POST http://localhost:3001/items \
   -H "Content-Type: application/json" \
   -d '{"name": "Learn Express"}'
 
+# Now doing the first curl command again, it should have your newly created item.
+
 # Delete an item
 curl -X DELETE http://localhost:3001/items/1
+
+# Now if you curl /items again it should be empty.
 ```
 
 ---
